@@ -34,13 +34,9 @@ public class FeedServiceImpl implements FeedService {
     public void saveFeed(FeedModel feedModel) {
 
         if (feedModel != null) {
-            for (ItemModel item : feedModel.getItemList()) {
-                getItemDao().saveItem(item);
-            }
+            feedModel.getItemList().forEach(item -> getItemDao().saveItem(item));
             getFeedDao().saveFeed(feedModel);
         }
-
-        //        feedModel.getItemList().forEach(item -> getItemService().addItem(item));
     }
 
     @Override

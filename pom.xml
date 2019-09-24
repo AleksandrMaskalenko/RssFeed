@@ -15,8 +15,7 @@
         <org.aspectj-version>1.7.4</org.aspectj-version>
         <org.slf4j-version>1.7.5</org.slf4j-version>
         <hibernate.version>4.3.5.Final</hibernate.version>
-        <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
-<!--        <org.springframework.version>4.3.25.RELEASE</org.springframework.version>-->
+        <org.springframework.version>4.3.25.RELEASE</org.springframework.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -180,7 +179,7 @@
             <uniqueVersion>false</uniqueVersion>
             <id>internal.repo</id>
             <name>Internal repo</name>
-            <url>file:///home/alex/Documents/projects/PearlMVCTestTask</url>
+            <url>file:///home/alex/Documents/projects/FeedRss</url>
             <layout>default</layout>
         </repository>
     </distributionManagement>

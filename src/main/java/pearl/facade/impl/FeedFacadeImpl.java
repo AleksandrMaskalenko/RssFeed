@@ -82,26 +82,23 @@ public class FeedFacadeImpl implements FeedFacade {
     @Override
     public void removeFeed(int id) {
         List<ItemModel> listItems = getItemService().getListItems(id);
-        for (ItemModel itemModel: listItems) {
-            getItemService().removeItem(itemModel.getId());
-        }
 
+        listItems.forEach(i -> getItemService().removeItem(i.getId()));
         getFeedService().removeFeed(id);
     }
 
     @Override
     public List<ItemData> getListItems(int id) {
-        List<ItemModel> listItems = getItemService().getListItems(id);
-        List<ItemModel> listIt = getFiveRecentArticles(listItems);
-        List<ItemData> list2 = new ArrayList<>();
+        List<ItemModel> itemModelList = getFiveRecentArticles(getItemService().getListItems(id));
+        List<ItemData> itemDataList = new ArrayList<>();
 
-        for (ItemModel itemModel: listIt) {
+        for (ItemModel itemModel: itemModelList) {
             ItemData itemData = new ItemData();
             getItemPopulator().populate(itemModel, itemData);
-            list2.add(itemData);
+            itemDataList.add(itemData);
         }
 
-        return list2;
+        return itemDataList;
     }
 
     private List<ItemModel> getFiveRecentArticles(List<ItemModel> listItems) {
