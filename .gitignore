@@ -1,0 +1,8 @@
+# Ignore Misc files
+*.iml
+.idea
+.idea_test_gpg
+.DS_Store
+out/
+lib/
+target/

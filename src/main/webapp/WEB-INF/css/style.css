@@ -1,0 +1,62 @@
+.wireframe {
+    border-radius: 15px;
+    border: 1px solid #000;
+    padding: 30px;
+    margin: 25px 15px 0 15px;
+}
+
+.wrapper {
+    float:left;
+    overflow: auto;
+    width: 550px;
+}
+
+.second {
+
+    overflow: hidden;
+    margin-top: 0;
+    height: 480px;
+}
+
+h4 {
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+}
+
+h5 {
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:normal;
+    font-style: italic;
+}
+
+.right {
+    float:right;
+}
+
+.left {
+    float: left;
+    overflow: hidden;
+}
+
+.wire-second {
+    margin-top: 0;
+}
+
+.remove-brd {
+    border: none !important;
+    padding: 0;
+}
+
+.remove-pading {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+}
+
+.detail-list {
+    margin-top: 120px;
+}
+
+.add-feed-button {
+    margin: 10px;
+}
