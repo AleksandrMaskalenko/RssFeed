@@ -7,14 +7,11 @@ import com.rometools.rome.io.XmlReader;
 import org.apache.log4j.Logger;
 import pearl.model.FeedModel;
 import pearl.model.ItemModel;
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 public class RssFeedParser {
     private static final Logger LOG = Logger.getLogger(RssFeedParser.class);
@@ -33,7 +30,7 @@ public class RssFeedParser {
             SyndFeedInput input = new SyndFeedInput();
             return input.build(new XmlReader(url.openConnection()));
         } catch (Exception e) {
-            LOG.error("Can't connect to url" + getUrl(), e);
+            LOG.error("Can't connect to url" + getUrl());
             return null;
         }
     }
