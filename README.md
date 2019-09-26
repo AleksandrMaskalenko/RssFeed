@@ -4,7 +4,6 @@ Prerequisites
 
 Linux/Unix system*
 
-Git
 JDK 8 (tested with openjdk version "1.8.0_222")
 Maven (tested with Apache Maven 3.6.2)
 Docker (tested with 18.09.7, build 2d0083d)

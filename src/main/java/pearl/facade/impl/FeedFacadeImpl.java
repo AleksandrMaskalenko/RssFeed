@@ -1,6 +1,7 @@
 package pearl.facade.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import pearl.dto.FeedData;
 import pearl.dto.ItemData;
 import pearl.facade.FeedFacade;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
  */
 public class FeedFacadeImpl implements FeedFacade {
     private static final Logger LOG = Logger.getLogger(FeedFacadeImpl.class);
+
+    @Value("${new.design}")
+    private String myvalue;
 
     private FeedService feedService;
     private FeedPopulator feedPopulator;
@@ -122,6 +126,11 @@ public class FeedFacadeImpl implements FeedFacade {
         } else {
             return getFeedById(feedModel.getId());
         }
+    }
+
+    @Override
+    public String getJspFileName() {
+        return  (Boolean.parseBoolean(myvalue)) ? "feeds_v2" : "feeds";
     }
 
 
