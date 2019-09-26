@@ -15,6 +15,7 @@
         <c:if test="${!empty listItemDetails}">
             <ul class="nav top-nav">
                 <li class="nav-item" ><p>Feed name: ${listFeedDetails.feedName}</p></li>
+                <li class="nav-item"><p>Feed url: ${listFeedDetails.url}</p></li>
                 <li class="nav-item"><p>Feed total article count ${listFeedDetails.articleCount}</p></li>
                 <li class="nav-item"><p>Feed last update: ${listFeedDetails.lastUpdate}</p></li>
             </ul>
