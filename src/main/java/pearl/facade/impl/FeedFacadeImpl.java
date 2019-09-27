@@ -1,6 +1,7 @@
 package pearl.facade.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import pearl.dto.FeedData;
 import pearl.dto.ItemData;
 import pearl.facade.FeedFacade;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
  */
 public class FeedFacadeImpl implements FeedFacade {
     private static final Logger LOG = Logger.getLogger(FeedFacadeImpl.class);
+
+    @Value("${new.design}")
+    private String myvalue;
 
     private FeedService feedService;
     private FeedPopulator feedPopulator;
@@ -82,26 +86,23 @@ public class FeedFacadeImpl implements FeedFacade {
     @Override
     public void removeFeed(int id) {
         List<ItemModel> listItems = getItemService().getListItems(id);
-        for (ItemModel itemModel: listItems) {
-            getItemService().removeItem(itemModel.getId());
-        }
 
+        listItems.forEach(i -> getItemService().removeItem(i.getId()));
         getFeedService().removeFeed(id);
     }
 
     @Override
     public List<ItemData> getListItems(int id) {
-        List<ItemModel> listItems = getItemService().getListItems(id);
-        List<ItemModel> listIt = getFiveRecentArticles(listItems);
-        List<ItemData> list2 = new ArrayList<>();
+        List<ItemModel> itemModelList = getFiveRecentArticles(getItemService().getListItems(id));
+        List<ItemData> itemDataList = new ArrayList<>();
 
-        for (ItemModel itemModel: listIt) {
+        for (ItemModel itemModel: itemModelList) {
             ItemData itemData = new ItemData();
             getItemPopulator().populate(itemModel, itemData);
-            list2.add(itemData);
+            itemDataList.add(itemData);
         }
 
-        return list2;
+        return itemDataList;
     }
 
     private List<ItemModel> getFiveRecentArticles(List<ItemModel> listItems) {
@@ -125,6 +126,11 @@ public class FeedFacadeImpl implements FeedFacade {
         } else {
             return getFeedById(feedModel.getId());
         }
+    }
+
+    @Override
+    public String getJspFileName() {
+        return  (Boolean.parseBoolean(myvalue)) ? "feeds_v2" : "feeds";
     }
 
 

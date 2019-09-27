@@ -15,7 +15,6 @@ import pearl.facade.FeedFacade;
  */
 @Controller
 public class FeedController {
-    private static final String FEEDS = "feeds";
 
     @Autowired
     private FeedFacade feedFacade;
@@ -23,14 +22,14 @@ public class FeedController {
     @RequestMapping(value = "/feeds", method = RequestMethod.GET)
     public String setupForm(Model model){
         addDefaultAttributes(model);
-        return FEEDS;
+        return feedFacade.getJspFileName();
     }
 
     @RequestMapping(value = "/feed/add", method = RequestMethod.POST)
     public String addFeed(@ModelAttribute FeedData feedData, Model model){
         feedFacade.addFeed(feedData);
         addDefaultAttributes(model);
-        return FEEDS;
+        return feedFacade.getJspFileName();
     }
 
     @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
@@ -38,14 +37,14 @@ public class FeedController {
         addDefaultAttributes(model);
         model.addAttribute("listItemDetails", feedFacade.getListItems(id));
         model.addAttribute("listFeedDetails", feedFacade.getFeedById(id));
-        return FEEDS;
+        return feedFacade.getJspFileName();
     }
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.POST)
     public String removeFeed(@PathVariable("id") int id, Model model){
         feedFacade.removeFeed(id);
         addDefaultAttributes(model);
-        return FEEDS;
+        return feedFacade.getJspFileName();
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -54,7 +53,7 @@ public class FeedController {
         addDefaultAttributes(model);
         model.addAttribute("listItemDetails", feedFacade.getListItems(feedData.getId()));
         model.addAttribute("listFeedDetails", feedData);
-        return FEEDS;
+        return feedFacade.getJspFileName();
     }
 
     private void addDefaultAttributes(Model model) {
