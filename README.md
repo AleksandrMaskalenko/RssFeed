@@ -11,6 +11,7 @@ Before environment setup/startup, please make sure if port 8080 and 3306 not use
 # Requirements #
 
 * Linux/Unix system*
+* Maven (tested with version 3.6.2)
 * JDK 8 (tested with openjdk version "1.8.0_222")
 * Docker (tested with 18.09.7, build 2d0083d)
 
@@ -55,11 +56,6 @@ For Linux/Unix:
 ```
 ./setup_env.sh
 ```
-For Windows:
-```
-
-```
-
 
 Test in the browser by link:
 http://localhost:8080/FeedsRss_war/feeds
