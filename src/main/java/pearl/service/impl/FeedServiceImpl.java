@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import pearl.dao.FeedDao;
 import pearl.dao.ItemDao;
 import pearl.model.FeedModel;
-import pearl.model.ItemModel;
 import pearl.service.FeedService;
 
 import java.util.List;
