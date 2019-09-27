@@ -1,6 +1,7 @@
 package pearl.facade.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
 import pearl.dto.FeedData;
 import pearl.dto.ItemData;
@@ -24,14 +25,8 @@ import java.util.stream.Collectors;
 public class FeedFacadeImpl implements FeedFacade {
     private static final Logger LOG = Logger.getLogger(FeedFacadeImpl.class);
 
-    private static final String FEED = "feeds";
-    private static final String FEED_V2 = "feeds_v2";
-
     @Value("${article.count}")
     private String articleCount;
-
-    @Value("${new.design}")
-    private String myvalue;
 
     private FeedService feedService;
     private FeedPopulator feedPopulator;
@@ -127,7 +122,7 @@ public class FeedFacadeImpl implements FeedFacade {
      */
     private List<ItemModel> getFiveRecentArticles(List<ItemModel> listItems) {
         listItems.sort(new ItemsSort());
-        return listItems.stream().limit(getArticleCount()).collect(Collectors.toList());
+        return listItems.stream().limit(Integer.parseInt(articleCount)).collect(Collectors.toList());
     }
 
     @Override
@@ -148,21 +143,7 @@ public class FeedFacadeImpl implements FeedFacade {
         }
     }
 
-    @Override
-    public String getJspFileName() {
-        if (myvalue.isEmpty()) {
-            return FEED_V2;
-        }
-        return  (Boolean.parseBoolean(myvalue)) ? FEED_V2 : FEED;
-    }
-
-    public int getArticleCount() {
-        if (articleCount.isEmpty()) {
-            return 5;
-        }
-        return Integer.parseInt(articleCount);
-    }
-
+    @Required
     public void setFeedService(FeedService feedService) {
         this.feedService = feedService;
     }
@@ -175,6 +156,7 @@ public class FeedFacadeImpl implements FeedFacade {
         return feedPopulator;
     }
 
+    @Required
     public void setFeedPopulator(FeedPopulator feedPopulator) {
         this.feedPopulator = feedPopulator;
     }
@@ -183,6 +165,7 @@ public class FeedFacadeImpl implements FeedFacade {
         return itemService;
     }
 
+    @Required
     public void setItemService(ItemService itemService) {
         this.itemService = itemService;
     }
@@ -191,6 +174,7 @@ public class FeedFacadeImpl implements FeedFacade {
         return itemPopulator;
     }
 
+    @Required
     public void setItemPopulator(ItemPopulator itemPopulator) {
         this.itemPopulator = itemPopulator;
     }

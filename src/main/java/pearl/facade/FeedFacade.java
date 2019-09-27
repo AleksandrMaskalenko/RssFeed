@@ -57,6 +57,4 @@ public interface FeedFacade {
      */
     FeedData updateFeed(int id);
 
-    String getJspFileName();
-
 }

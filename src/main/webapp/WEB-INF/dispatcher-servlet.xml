@@ -72,7 +72,7 @@
 
     <alias alias="defaultItemService" name="itemService"/>
     <bean id="itemService" class="pearl.service.impl.ItemServiceImpl">
-        <property name="itemDao" ref="defaultItemDao"/>
+        <property name="itemDao" ref="itemDao"/>
     </bean>
 
     <bean id="feedFacade" class="pearl.facade.impl.FeedFacadeImpl">
