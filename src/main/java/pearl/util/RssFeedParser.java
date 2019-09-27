@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ *
+ * XML Feed parser implementation from url
+ *
+ */
 public class RssFeedParser {
     private static final Logger LOG = Logger.getLogger(RssFeedParser.class);
     private final URL url;
@@ -25,6 +30,11 @@ public class RssFeedParser {
         }
     }
 
+    /**
+     * Read rss feed from url.
+     *
+     * @return comparison result
+     */
     public SyndFeed read() {
         try {
             SyndFeedInput input = new SyndFeedInput();
@@ -35,6 +45,13 @@ public class RssFeedParser {
         }
     }
 
+    /**
+     * Parse form SyndFeed to FeedModel
+     *
+     * @param feed SyndFeed
+     *
+     * @return parsed Feed model
+     */
     public static FeedModel parseFeed(SyndFeed feed) {
 
         FeedModel feedModel;
