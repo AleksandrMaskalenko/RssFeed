@@ -6,7 +6,7 @@
 ## Important note ##
 
 Before start application build, choose views version, by default set "new.design=true", in property file. 
-Be sure if this script executable. Before environment setup/startup, please make sure if port 8080 and 3306 not used other applications.
+Before environment setup/startup, please make sure if port 8080 and 3306 not used other applications.
 
 # Requirements #
 
@@ -20,7 +20,7 @@ Be sure if this script executable. Before environment setup/startup, please make
 * Spring MVC
 * JSP
 * JSTL
-* Hibernate 4
+* Hibernate
 * Maven
 * Docker
 * MySQL
