@@ -24,6 +24,12 @@ import java.util.stream.Collectors;
 public class FeedFacadeImpl implements FeedFacade {
     private static final Logger LOG = Logger.getLogger(FeedFacadeImpl.class);
 
+    private static final String FEED = "feeds";
+    private static final String FEED_V2 = "feeds_v2";
+
+    @Value("${article.count}")
+    private String articleCount;
+
     @Value("${new.design}")
     private String myvalue;
 
@@ -47,6 +53,13 @@ public class FeedFacadeImpl implements FeedFacade {
         }
     }
 
+    /**
+     * Download rss feed by url and parse to FeedModel
+     *
+     * @param url
+     *           The url of the Feed for which to retrieve them.
+     * @return Feed Model
+     */
     private FeedModel downloadFeed(String url) {
 
         try {
@@ -105,9 +118,16 @@ public class FeedFacadeImpl implements FeedFacade {
         return itemDataList;
     }
 
+    /**
+     * Sort and get latest list of item model.
+     *
+     * @param listItems
+     *           The total list of item for current feed.
+     * @return total list of item model
+     */
     private List<ItemModel> getFiveRecentArticles(List<ItemModel> listItems) {
         listItems.sort(new ItemsSort());
-        return listItems.stream().limit(5).collect(Collectors.toList());
+        return listItems.stream().limit(getArticleCount()).collect(Collectors.toList());
     }
 
     @Override
@@ -130,9 +150,18 @@ public class FeedFacadeImpl implements FeedFacade {
 
     @Override
     public String getJspFileName() {
-        return  (Boolean.parseBoolean(myvalue)) ? "feeds_v2" : "feeds";
+        if (myvalue.isEmpty()) {
+            return FEED_V2;
+        }
+        return  (Boolean.parseBoolean(myvalue)) ? FEED_V2 : FEED;
     }
 
+    public int getArticleCount() {
+        if (articleCount.isEmpty()) {
+            return 5;
+        }
+        return Integer.parseInt(articleCount);
+    }
 
     public void setFeedService(FeedService feedService) {
         this.feedService = feedService;

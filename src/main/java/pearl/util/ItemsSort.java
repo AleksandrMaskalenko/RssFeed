@@ -4,8 +4,21 @@ import pearl.model.ItemModel;
 
 import java.util.Comparator;
 
+/**
+ *
+ * Item sorting implementation
+ *
+ */
 public class ItemsSort implements Comparator<ItemModel> {
 
+    /**
+     * Compare item models by check null.
+     *
+     * @param it1 First item model.
+     * @param it2 Second item model.
+     *
+     * @return comparison result
+     */
     @Override
     public int compare(ItemModel it1, ItemModel it2) {
 
@@ -21,6 +34,14 @@ public class ItemsSort implements Comparator<ItemModel> {
 
     }
 
+    /**
+     * Compare item models by published date.
+     *
+     * @param it1 First item model.
+     * @param it2 Second item model.
+     *
+     * @return comparison result
+     */
     private int dateCompare(ItemModel it1, ItemModel it2) {
         if (it1.getPublished().after(it2.getPublished())) {
             return -1;
