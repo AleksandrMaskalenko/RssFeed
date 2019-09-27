@@ -1,5 +1,6 @@
 package pearl.service.impl;
 
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import pearl.dao.FeedDao;
 import pearl.dao.ItemDao;
@@ -13,7 +14,6 @@ import java.util.List;
  * Concrete implementation for the Feed service interface {@link FeedService}
  *
  */
-@Service
 public class FeedServiceImpl implements FeedService {
 
     private FeedDao feedDao;
@@ -43,6 +43,7 @@ public class FeedServiceImpl implements FeedService {
         getFeedDao().removeFeed(id);
     }
 
+    @Required
     public void setFeedDao(FeedDao feedDao) {
         this.feedDao = feedDao;
     }
@@ -55,6 +56,7 @@ public class FeedServiceImpl implements FeedService {
         return itemDao;
     }
 
+    @Required
     public void setItemDao(ItemDao itemDao) {
         this.itemDao = itemDao;
     }

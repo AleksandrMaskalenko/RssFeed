@@ -1,5 +1,6 @@
 package pearl.service.impl;
 
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import pearl.dao.ItemDao;
 import pearl.model.ItemModel;
@@ -12,7 +13,6 @@ import java.util.List;
  * Concrete implementation for the Item service interface {@link ItemService}
  *
  */
-@Service
 public class ItemServiceImpl implements ItemService {
 
     private ItemDao itemDao;
@@ -37,6 +37,7 @@ public class ItemServiceImpl implements ItemService {
         return itemDao;
     }
 
+    @Required
     public void setItemDao(ItemDao itemDao) {
         this.itemDao = itemDao;
     }
