@@ -5,7 +5,7 @@
 
 ## Important note ##
 
-Before start application build, choose views version, by default set "new.design=true", in property file. 
+Before start application build, choose views version, by default set "main.page=feeds_v2", in property file. 
 Before environment setup/startup, please make sure if port 8080 and 3306 not used other applications.
 
 # Requirements #
