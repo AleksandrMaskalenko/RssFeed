@@ -12,7 +12,7 @@
                 <h4>Add XML RSS Feed</h4>
                 <h5>Please provide new XML RSS Feed information</h5>
 
-            <form:form action="/FeedsRss_war/feeds/add" method="POST" commandName="feedModel">
+            <form:form action="/feeds/add" method="POST" commandName="feedModel">
                     <div class="block">
                         <label class="add-feed-label" for="fUrl">XML RSS Feed URL:</label>
                         <form:input id="fUrl" path="url"/>
@@ -33,10 +33,10 @@
 
             <c:if test="${!empty listFeeds}">
                 <c:forEach items="${listFeeds}" var="feed">
-                    <form:form action="/FeedsRss_war/feeds/remove/${feed.id}" method="POST" >
+                    <form:form action="/feeds/remove/${feed.id}" method="POST" >
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <a href="/FeedsRss_war/feeds/get/${feed.id}">${feed.feedName}</a>
+                                <a href="/feeds/get/${feed.id}">${feed.feedName}</a>
                                 <button type="submit" class="close" aria-label="Delete">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -54,7 +54,7 @@
     <div class="wrapper-right">
         <div class="wireframe">
             <h4>XML RSS Feed Details</h4>
-            <button class="right btn btn-outline-secondary" onclick="window.location.href = '/FeedsRss_war/feeds/update/${listFeedDetails.id}';">Update</button>
+            <button class="right btn btn-outline-secondary" onclick="window.location.href = '/feeds/update/${listFeedDetails.id}';">Update</button>
 
             <div class="item-detail-info">
                 <p>Feed name: ${listFeedDetails.feedName}</p>
