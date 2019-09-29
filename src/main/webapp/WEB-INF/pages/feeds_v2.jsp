@@ -65,11 +65,11 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <c:choose>
-                <c:when test="${!empty listItemDetails}">
-                    <div class="row" id="main" >
-                        <div class="col-sm-12 col-md-12 well" id="content">
-                            <div class="container">
+            <div class="row" id="main" >
+                <div class="col-sm-12 col-md-12 well" id="content">
+                    <div class="container">
+                        <c:choose>
+                            <c:when test="${!empty listItemDetails}">
                                 <button class="update-btn btn btn-info" onclick="window.location.href = '/feeds/update/${listFeedDetails.id}';">Update</button>
                                 <div class="row">
                                     <c:forEach items="${listItemDetails}" var="item">
@@ -88,17 +88,19 @@
                                     </c:forEach>
 
                                 </div>
-                            </div>
-                        </div>
+                            </c:when>
+                            <c:when test="${!empty listFeeds}">
+                                <h3><i>Please select feed from list!</i></h3>
+                            </c:when>
+                            <c:otherwise>
+                                <h3><i>Here you can see your RSS feeds. But looks like you have no RSS, please add a new one!</i></h3>
+                            </c:otherwise>
+                        </c:choose>
 
                     </div>
-                </c:when>
-                <c:otherwise>
-                    <div>
-                        <h3 class="list-feed-title"><i>Here you can see your RSS feeds. But looks like you have no RSS, please add a new one!</i></h3>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+                </div>
+
+            </div>
         </div>
     </div>
 
