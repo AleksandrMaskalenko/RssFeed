@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pearl.dao.ItemDao;
 import pearl.model.ItemModel;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,18 +32,29 @@ public class ItemDaoImpl implements ItemDao {
     @Override
     @Transactional
     public void saveItem(ItemModel itemModel) {
-        this.sessionFactory.getCurrentSession().save(itemModel);
-        LOG.info("Item successfully saved. Item details: " + itemModel);
+        Session session = this.sessionFactory.getCurrentSession();
+        try {
+            session.save(itemModel);
+            LOG.info("Item successfully saved. Item details: " + itemModel);
+        } catch (Exception e) {
+            LOG.error("Error has occurred while save item model" + e);
+        }
     }
 
     @Override
     @Transactional
     public List<ItemModel> getListItemsById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
+        List<ItemModel> list = new ArrayList<>();
 
-        Query query = session.createQuery(GET_LIST_ITEMS_BY_ID);
-        query.setParameter("feed_id", id);
-        List<ItemModel> list = (List<ItemModel>) query.list();
+        try {
+            Query query = session.createQuery(GET_LIST_ITEMS_BY_ID);
+            query.setParameter("feed_id", id);
+            list = (List<ItemModel>) query.list();
+        } catch (Exception e) {
+            LOG.error("Error has occurred while get item model list by feed id" + e);
+        }
+
 
         if (list == null || list.isEmpty()) {
             return Collections.emptyList();
@@ -55,8 +67,13 @@ public class ItemDaoImpl implements ItemDao {
     @Transactional
     public void removeItem(int id) {
         Session session = this.sessionFactory.getCurrentSession();
+        ItemModel itemModel = new ItemModel();
 
-        ItemModel itemModel = (ItemModel) session.get(ItemModel.class, id);
+        try {
+            itemModel = (ItemModel) session.get(ItemModel.class, id);
+        } catch (Exception e) {
+            LOG.error("Error has occurred while get item model by id" + e);
+        }
 
         if(itemModel!=null){
             session.delete(itemModel);
