@@ -58,4 +58,4 @@ For Linux/Unix:
 ```
 
 Test in the browser by link:
-http://localhost:8080/FeedsRss_war/feeds
+http://localhost:8080/feeds

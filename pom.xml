@@ -181,7 +181,6 @@
             <uniqueVersion>false</uniqueVersion>
             <id>internal.repo</id>
             <name>Internal repo</name>
-            <url>file:///home/alex/Documents/projects/FeedRss</url>
             <layout>default</layout>
         </repository>
     </distributionManagement>
