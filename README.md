@@ -58,8 +58,11 @@ For Linux/Unix:
 ```
 
 Test in the browser by link:
+
 http://localhost:8080/feeds
 
 For example use:
+
 https://www.15min.lt/rss
+
 https://news.google.com/rss
