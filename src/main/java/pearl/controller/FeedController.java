@@ -15,7 +15,7 @@ import pearl.facade.FeedFacade;
  * Feed Controller. Provides common for all functionality
  */
 @Controller
-@RequestMapping("/feeds")
+@RequestMapping("/")
 public class FeedController {
 
     @Value("${main.page}")

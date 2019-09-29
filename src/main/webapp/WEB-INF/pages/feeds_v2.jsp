@@ -23,7 +23,7 @@
 
         <div class="nav side-nav">
             <div class="add-feed">
-                <form:form action="/FeedsRss_war/feeds/add" method="POST" commandName="feedModel">
+                <form:form action="/feeds/add" method="POST" commandName="feedModel">
                     <div class="form-group">
                         <form:input class="form-control" placeholder="RSS Feed Url" path="url"/>
                     </div>
@@ -39,11 +39,11 @@
             <c:if test="${!empty listFeeds}">
                 <c:forEach items="${listFeeds}" var="feed">
 
-                    <form:form action="/FeedsRss_war/feeds/remove/${feed.id}" method="POST" >
+                    <form:form action="/feeds/remove/${feed.id}" method="POST" >
 
                             <ul class="list-feeds">
                                 <li  class="list-group-item">
-                                    <a href="/FeedsRss_war/feeds/get/${feed.id}">${feed.feedName}</a>
+                                    <a href="/feeds/get/${feed.id}">${feed.feedName}</a>
                                     <button type="submit" class="close" aria-label="Delete">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -65,36 +65,40 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <c:if test="${!empty listItemDetails}">
-
-
-
-                <div class="row" id="main" >
-                    <div class="col-sm-12 col-md-12 well" id="content">
-                        <div class="container">
-                            <button class="update-btn btn btn-info" onclick="window.location.href = '/FeedsRss_war/feeds/update/${listFeedDetails.id}';">Update</button>
-                            <div class="row">
-                                <c:forEach items="${listItemDetails}" var="item">
-                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                        <div class="card card-inverse card-info">
-                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                            <div class="card-block">
-                                                <h4 class="card-title">${item.title}</h4>
-                                            </div>
-                                            <div class="card-footer">
-                                                <small>Last updated ${item.published}</small>
-                                                <button class="btn btn-info float-right btn-sm" onclick="window.location.href ='${item.link}';">More</button>
+            <c:choose>
+                <c:when test="${!empty listItemDetails}">
+                    <div class="row" id="main" >
+                        <div class="col-sm-12 col-md-12 well" id="content">
+                            <div class="container">
+                                <button class="update-btn btn btn-info" onclick="window.location.href = '/feeds/update/${listFeedDetails.id}';">Update</button>
+                                <div class="row">
+                                    <c:forEach items="${listItemDetails}" var="item">
+                                        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                                            <div class="card card-inverse card-info">
+                                                <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">${item.title}</h4>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <small>Last updated ${item.published}</small>
+                                                    <button class="btn btn-info float-right btn-sm" onclick="window.location.href ='${item.link}';">More</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </c:forEach>
+                                    </c:forEach>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            </c:if>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div>
+                        <h3 class="list-feed-title"><i>Here you can see your RSS feeds. But looks like you have no RSS, please add a new one!</i></h3>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 
